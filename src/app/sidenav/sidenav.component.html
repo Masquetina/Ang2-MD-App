@@ -1,0 +1,25 @@
+<md-sidenav-layout fullscreen>
+  <md-sidenav #sidenav>
+    <md-toolbar color="primary">
+      <button md-icon-button (click)="sidenav.close()">
+        <md-icon>chevron_left</md-icon>
+      </button>
+      <h3 class="title">Menu</h3>
+    </md-toolbar>
+    <md-list>
+      <a md-list-item *ngFor="let view of views"
+         (click)="sidenav.close()">
+        <md-icon md-list-icon>{{view.icon}}</md-icon>
+        <span md-line>{{view.name}}</span>
+        <span md-line>{{view.description}}</span>
+      </a>
+    </md-list>
+  </md-sidenav>
+  <md-toolbar color="primary" fullscreen>
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    <h3 class="title">My App</h3>
+  </md-toolbar>
+  <router-outlet></router-outlet>
+</md-sidenav-layout>

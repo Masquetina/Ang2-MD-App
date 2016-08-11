@@ -1,0 +1,13 @@
+md-sidenav-layout {
+  background: rgba(0,0,0,0.08);
+}
+a[md-list-item] {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+h3.title {
+  cursor: default;
+  padding-left: 16px;
+}
