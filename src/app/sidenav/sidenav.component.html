@@ -23,21 +23,6 @@
         <span md-line>Let's get productive!</span>
       </a>
       <a md-list-item
-         *ngIf="isAuth();"
-         (click)="onLogout(); sidenav.close();">
-        <md-icon md-list-icon>power_settings_new</md-icon>
-        <span md-line>Logout</span>
-        <span md-line>Enough work for today?</span>
-      </a>
-      <a md-list-item
-         *ngIf="!isAuth();"
-         [routerLink]="['login']"
-         (click)="sidenav.close();">
-        <md-icon md-list-icon>launch</md-icon>
-        <span md-line>Login</span>
-        <span md-line>Feeling productive today?</span>
-      </a>
-      <a md-list-item
          [routerLink]="['about']"
          (click)="sidenav.close();">
         <md-icon md-list-icon>info_outline</md-icon>
@@ -51,6 +36,9 @@
       <md-icon>menu</md-icon>
     </button>
     <h3 class="title">My App</h3>
+    <span class="example-fill-remaining-space"></span>
+    <h4 class="link" *ngIf="isAuth();" (click)="onLogout();">Logout</h4>
+    <h4 class="link" *ngIf="!isAuth();" [routerLink]="['login']">Login</h4>
   </md-toolbar>
   <router-outlet></router-outlet>
 </md-sidenav-layout>

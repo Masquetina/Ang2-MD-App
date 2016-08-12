@@ -19,13 +19,12 @@ export class AuthService {
     this.af.auth.login(firebaseAuthConfig)
       .then((res) => {
       if(res)
-        this.router.navigate(['/']);
+        this.router.navigate(['/protected']);
     });
   }
 
   logoutUser() {
     this.af.auth.logout();
-    this.router.navigate(['/']);
   }
 
   changeState(user: any = null) {
