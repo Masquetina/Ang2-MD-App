@@ -15,10 +15,6 @@ export class LoginComponent {
     this.authService.loginUser();
   }
 
-  onLogout() {
-    this.authService.logoutUser();
-  }
-
   isAuth() {
     return this.authService.isAuth;
   }

@@ -24,10 +24,13 @@ import { SidenavComponent } from "./sidenav/sidenav.component";
 import { MdProgressCircleModule } from "@angular2-material/progress-circle";
 import { MdRippleModule } from "@angular2-material/core";
 
-import { AuthService } from "./shared/auth.service";
 import { routing } from "./app.routes";
 import { HomeComponent} from "./static/home.component";
 import { LoginComponent } from "./login/login.component";
+import { ProtectedComponent } from "./protected/protected.component";
+import { AuthService } from "./shared/auth.service";
+import { AuthGuard } from "./shared/auth.guard";
+import { NonAuthGuard } from "./shared/non-auth.guard";
 
 @NgModule({
   imports: [
@@ -48,7 +51,8 @@ import { LoginComponent } from "./login/login.component";
     AppComponent,
     SidenavComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProtectedComponent
   ],
   providers: [
     AngularFire,
@@ -63,7 +67,9 @@ import { LoginComponent } from "./login/login.component";
       method: AuthMethods.Popup,
       provider: AuthProviders.Google
     }),
-    AuthService
+    AuthService,
+    AuthGuard,
+    NonAuthGuard
   ],
   bootstrap: [AppComponent],
 })
