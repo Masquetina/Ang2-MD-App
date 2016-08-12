@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../shared/auth.service";
 
-
 @Component({
   moduleId: module.id,
-  selector: 'web-sidenav',
-  templateUrl: 'sidenav.component.html',
-  styleUrls: ['sidenav.component.css'],
+  selector: 'web-login',
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
 })
-export class SidenavComponent {
+export class LoginComponent {
 
   constructor(private authService: AuthService) { }
+
+  onLogin() {
+    this.authService.loginUser();
+  }
 
   onLogout() {
     this.authService.logoutUser();
@@ -19,4 +22,5 @@ export class SidenavComponent {
   isAuth() {
     return this.authService.isAuth;
   }
+
 }

@@ -4,6 +4,15 @@ import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
+import {
+  AngularFire,
+  FIREBASE_PROVIDERS,
+  defaultFirebase,
+  firebaseAuthConfig,
+  AuthMethods,
+  AuthProviders
+} from 'angularfire2';
+
 import { MdToolbarModule } from "@angular2-material/toolbar";
 import { MdSidenavModule } from '@angular2-material/sidenav';
 import { MdButtonModule } from "@angular2-material/button";
@@ -14,6 +23,11 @@ import { AppComponent } from "./app.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
 import { MdProgressCircleModule } from "@angular2-material/progress-circle";
 import { MdRippleModule } from "@angular2-material/core";
+
+import { AuthService } from "./shared/auth.service";
+import { routing } from "./app.routes";
+import { HomeComponent} from "./static/home.component";
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
   imports: [
@@ -27,15 +41,30 @@ import { MdRippleModule } from "@angular2-material/core";
     MdListModule,
     MdIconModule,
     MdProgressCircleModule,
-    MdRippleModule
+    MdRippleModule,
+    routing
   ],
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent,
+    LoginComponent
   ],
-  //providers: [
-  //
-  //],
+  providers: [
+    AngularFire,
+    FIREBASE_PROVIDERS,
+    defaultFirebase({
+      apiKey: "AIzaSyBppZV9s2nJS-gnjj1XijDx61-P588Wwes",
+      authDomain: "web-md-backend.firebaseapp.com",
+      databaseURL: "https://web-md-backend.firebaseio.com",
+      storageBucket: "web-md-backend.appspot.com",
+    }),
+    firebaseAuthConfig({
+      method: AuthMethods.Popup,
+      provider: AuthProviders.Google
+    }),
+    AuthService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

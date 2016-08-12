@@ -3,9 +3,13 @@ md-sidenav-layout {
 }
 a[md-list-item] {
   cursor: pointer;
-}
-a {
   text-decoration: none;
+}
+a[md-list-item] * {
+  color: rgba(0,0,0,0.8);
+}
+a[md-list-item]:hover * {
+  color: rgba(0,150,136,1);
 }
 h3.title {
   cursor: default;

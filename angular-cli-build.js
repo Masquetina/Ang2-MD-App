@@ -16,7 +16,10 @@ module.exports = function(defaults) {
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      '@angular2-material/**/*'
+      '@angular/**/*.+(js|js.map)',
+      '@angular2-material/**/*.+(js|js.map)',
+      'angularfire2/**/*.+(js|js.map)',
+      'firebase/**/*.+(js|js.map)'
     ]
   });
 };
