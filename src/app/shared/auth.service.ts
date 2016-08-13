@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 @Injectable()
 export class AuthService {
   public isAuth = false;
-  public user = { };
 
   constructor(public af: AngularFire, private router: Router) {
     this.af.auth.subscribe(
@@ -22,7 +21,7 @@ export class AuthService {
           this.router.navigate(['/protected']);
       })
       .catch((error) => {
-        console.log("ERROR CODE: " + error.code);
+        console.log("ERROR: " + error);
       });
   }
 
@@ -33,25 +32,23 @@ export class AuthService {
   changeState(user: any = null) {
     if(user) {
       this.isAuth = true;
-      this.user = this.getUserInfo(user);
-      //console.log(user.auth.providerData[0].displayName);
+      var user = this.getUserInfo(user);
+        console.log(user.name);
+        console.log(user.avatar);
+        console.log(user.email);
+        console.log(user.uid);
     }
     else {
       this.isAuth = false;
-      this.user = { };
     }
   }
 
   getUserInfo(user: any): any {
-    if(!user) {
-      return { };
-    }
-    let data = user.auth.providerData[0];
     return {
-      name: data.displayName,
-      avatar: data.photoURL,
-      email: data.email,
-      provider: data.providerId
+      name: user.auth.providerData[0].displayName,
+      avatar: user.auth.providerData[0].photoURL,
+      email: user.auth.providerData[0].email,
+      uid: user.auth.providerData[0].uid
     };
   }
 }

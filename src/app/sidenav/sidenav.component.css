@@ -8,11 +8,17 @@ a[md-list-item] {
   cursor: pointer;
   text-decoration: none;
 }
+a[md-list-item].is-active {
+  cursor: default;
+}
 a[md-list-item] * {
-  color: rgba(0,0,0,.87);
+  color: rgba(0,0,0,.54);
 }
 a[md-list-item]:hover * {
   color: rgba(0,150,136,.87);
+}
+a[md-list-item].is-active * {
+  color: rgba(0,0,0,.87);
 }
 span[md-line].lite {
   font-weight: 300 !important;

@@ -8,7 +8,8 @@
     </md-toolbar>
     <md-list>
       <a md-list-item
-         [routerLink]="['']"
+         [routerLink]="['home']"
+         [routerLinkActive]="['is-active']"
          (click)="sidenav.close();">
         <md-icon md-list-icon>home</md-icon>
         <span md-line>Home</span>
@@ -17,6 +18,7 @@
       <a md-list-item
          *ngIf="isAuth();"
          [routerLink]="['protected']"
+         [routerLinkActive]="['is-active']"
          (click)="sidenav.close();">
         <md-icon md-list-icon>view_list</md-icon>
         <span md-line>ToDo List</span>
@@ -24,6 +26,7 @@
       </a>
       <a md-list-item
          [routerLink]="['about']"
+         [routerLinkActive]="['is-active']"
          (click)="sidenav.close();">
         <md-icon md-list-icon>info_outline</md-icon>
         <span md-line>About</span>
@@ -35,7 +38,7 @@
     <button md-icon-button (click)="sidenav.open();">
       <md-icon>menu</md-icon>
     </button>
-    <h3 class="title link" [routerLink]="['']">My App</h3>
+    <h3 class="title link" [routerLink]="['home']">My App</h3>
     <span class="example-fill-remaining-space"></span>
     <h4 class="link" *ngIf="isAuth();" (click)="onLogout();">Logout</h4>
     <h4 class="link" *ngIf="!isAuth();" [routerLink]="['login']">Login</h4>
