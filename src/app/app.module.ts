@@ -23,6 +23,8 @@ import { AppComponent } from "./app.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
 import { MdProgressCircleModule } from "@angular2-material/progress-circle";
 import { MdRippleModule } from "@angular2-material/core";
+import { MdGridListModule } from "@angular2-material/grid-list";
+import { MdCardModule } from "@angular2-material/card";
 
 import { routing } from "./app.routes";
 import { HomeComponent} from "./static/home.component";
@@ -45,6 +47,8 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     MdIconModule,
     MdProgressCircleModule,
     MdRippleModule,
+    MdGridListModule,
+    MdCardModule,
     routing
   ],
   declarations: [

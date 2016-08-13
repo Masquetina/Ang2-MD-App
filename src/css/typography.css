@@ -1,0 +1,32 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(0,0,0,.87);
+}
+h1, h2, h3, h4, h5, h6, p {
+  font-weight: 300;
+  cursor: default;
+}
+.lite {
+  font-weight: 100;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}

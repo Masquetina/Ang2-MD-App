@@ -1,5 +1,5 @@
 md-sidenav-layout {
-  background: rgba(0,0,0,0.08);
+  background: rgba(0,0,0,.08);
 }
 .example-fill-remaining-space {
   flex: 1 1 auto;
@@ -9,15 +9,18 @@ a[md-list-item] {
   text-decoration: none;
 }
 a[md-list-item] * {
-  color: rgba(0,0,0,0.8);
+  color: rgba(0,0,0,.87);
 }
 a[md-list-item]:hover * {
-  color: rgba(0,150,136,1);
+  color: rgba(0,150,136,.87);
+}
+span[md-line].lite {
+  font-weight: 300 !important;
 }
 h3.title {
-  cursor: default;
-  padding-left: 16px;
+  font-weight: 400 !important;
+  margin-left: 8px;
 }
-h4.link {
+h3.link, h4.link {
   cursor: pointer;
 }

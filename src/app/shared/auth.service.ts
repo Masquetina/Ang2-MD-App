@@ -11,16 +11,19 @@ export class AuthService {
   constructor(public af: AngularFire, private router: Router) {
     this.af.auth.subscribe(
       user => this.changeState(user),
-      error => console.trace(error)
+      error => console.log("ERROR CODE: " + error.code)
     );
   }
 
   loginUser() {
     this.af.auth.login(firebaseAuthConfig)
       .then((res) => {
-      if(res)
-        this.router.navigate(['/protected']);
-    });
+        if(res)
+          this.router.navigate(['/protected']);
+      })
+      .catch((error) => {
+        console.log("ERROR CODE: " + error.code);
+      });
   }
 
   logoutUser() {

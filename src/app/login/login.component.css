@@ -1,5 +1,13 @@
 img.google {
   display: inline-block;
   vertical-align: middle;
+  width: 32px;
   margin-right: 8px;
+  padding: 8px 0;
+}
+md-grid-list {
+  /*border: 1px solid red;*/
+}
+button[md-raised-button].lite {
+  font-weight: 300 !important;
 }
