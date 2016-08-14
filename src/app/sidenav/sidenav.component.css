@@ -30,3 +30,9 @@ h3.title {
 h3.link, h4.link {
   cursor: pointer;
 }
+.avatar {
+  width: 32px;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 16px;
+}

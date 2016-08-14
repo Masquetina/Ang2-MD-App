@@ -40,6 +40,9 @@
     </button>
     <h3 class="title link" [routerLink]="['home']">My App</h3>
     <span class="example-fill-remaining-space"></span>
+    <span *ngIf="isAuth();">
+      <img class="avatar" src="{{authService.getUser().photoURL}}">
+    </span>
     <h4 class="link" *ngIf="isAuth();" (click)="onLogout();">Logout</h4>
     <h4 class="link" *ngIf="!isAuth();" [routerLink]="['login']">Login</h4>
   </md-toolbar>

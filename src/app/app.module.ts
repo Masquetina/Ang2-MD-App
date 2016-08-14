@@ -56,7 +56,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     SidenavComponent,
     HomeComponent,
     LoginComponent,
-    ProtectedComponent
+    ProtectedComponent,
   ],
   providers: [
     AngularFire,

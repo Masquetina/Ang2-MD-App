@@ -2,10 +2,12 @@ import { Injectable } from "@angular/core";
 
 import { AngularFire, firebaseAuthConfig } from "angularfire2";
 import { Router } from "@angular/router";
+import { User } from "./user";
 
 @Injectable()
 export class AuthService {
-  public isAuth = false;
+  public isAuth: boolean = false;
+  public user: User;
 
   constructor(public af: AngularFire, private router: Router) {
     this.af.auth.subscribe(
@@ -32,23 +34,21 @@ export class AuthService {
   changeState(user: any = null) {
     if(user) {
       this.isAuth = true;
-      var user = this.getUserInfo(user);
-        console.log(user.name);
-        console.log(user.avatar);
-        console.log(user.email);
-        console.log(user.uid);
+      this.user =
+      {
+        name: user.auth.providerData[0].displayName,
+        email: user.auth.providerData[0].email,
+        photoURL: user.auth.providerData[0].photoURL,
+        uid: user.auth.providerData[0].uid
+      };
     }
     else {
       this.isAuth = false;
+      this.user = null;
     }
   }
 
-  getUserInfo(user: any): any {
-    return {
-      name: user.auth.providerData[0].displayName,
-      avatar: user.auth.providerData[0].photoURL,
-      email: user.auth.providerData[0].email,
-      uid: user.auth.providerData[0].uid
-    };
+  getUser(): any {
+    return this.user;
   }
 }
