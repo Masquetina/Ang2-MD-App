@@ -1,0 +1,21 @@
+button[md-fab] {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+.modal {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(245,245,245,1);
+}
+.modal h4,
+.modal md-icon {
+  color: rgba(0,150,136, 1);
+}
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}

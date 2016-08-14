@@ -38,7 +38,7 @@
     <button md-icon-button (click)="sidenav.open();">
       <md-icon>menu</md-icon>
     </button>
-    <h3 class="title link" [routerLink]="['home']">My App</h3>
+    <h3 class="title link" [routerLink]="['home']">ToDo App</h3>
     <span class="example-fill-remaining-space"></span>
     <span *ngIf="isAuth();">
       <img class="avatar" src="{{authService.getUser().photoURL}}">

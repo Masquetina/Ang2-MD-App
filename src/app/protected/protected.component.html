@@ -1,3 +1,15 @@
 <div class="container">
-  <h2 class="text-center">Protected</h2>
+  <h2 class="text-center">ToDo List</h2>
+  <button md-fab color="primary" (click)="openModal();">
+    <md-icon>add</md-icon>
+  </button>
+</div>
+<div class="modal" *ngIf="modalDisplay != 'none'" [ngStyle]="{'display': 'modalDisplay'}">
+  <md-toolbar fullscreen>
+    <h4>Create New ToDo</h4>
+    <span class="example-fill-remaining-space"></span>
+    <button md-icon-button (click)="closeModal();">
+      <md-icon>close</md-icon>
+    </button>
+  </md-toolbar>
 </div>

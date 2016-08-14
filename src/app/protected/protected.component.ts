@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['protected.component.css']
 })
 export class ProtectedComponent implements OnInit {
-
+  modalDisplay = 'none';
   constructor() { }
+
+  openModal() {
+    this.modalDisplay = 'block';
+  }
+
+  closeModal() {
+    this.modalDisplay = 'none';
+  }
 
   ngOnInit() {
   }
-
 }
