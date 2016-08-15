@@ -12,4 +12,34 @@
       <md-icon>close</md-icon>
     </button>
   </md-toolbar>
+  <div class="container">
+    <form [formGroup]="ToDoForm" (ngSubmit)="onSave()">
+      <div>
+        <md-input #title
+                  formControlName="title"
+                  minLength="5"
+                  maxLength="25"
+                  placeholder="Title"
+                  dividerColor="warn"
+                  [dividerColor]="(!ToDoForm.find('title').valid && !ToDoForm.find('title').pristine) ? 'warn':'primary'">
+          <md-hint align="end">{{title.characterCount}} / 25</md-hint>
+        </md-input>
+      </div>
+      <div>
+        <md-input #description
+                  formControlName="description"
+                  minLength="5"
+                  maxLength="100"
+                  placeholder="Description"
+                  [dividerColor]="(!ToDoForm.find('description').valid && !ToDoForm.find('description').pristine) ? 'warn':'primary'">
+          <md-hint align="end">{{description.characterCount}} / 100</md-hint>
+        </md-input>
+      </div>
+      <div class="button-group pull-right">
+        <button md-button md-raised-button color="primary" [disabled]="!ToDoForm.valid">Save</button>
+        <button md-button color="primary" (click)="onCancel($event);">Cancel</button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </div>
 </div>

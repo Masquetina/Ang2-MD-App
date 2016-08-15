@@ -7,7 +7,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
 import { AuthGuard } from "./shared/auth.guard";
 
 const APP_ROUTES: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [NonAuthGuard] },
   { path: 'protected', component: ProtectedComponent, canActivate: [AuthGuard] },

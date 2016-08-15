@@ -1,3 +1,6 @@
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
 body {
   font-family: 'Roboto', sans-serif;
   color: rgba(0,0,0,.87);

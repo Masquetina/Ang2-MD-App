@@ -25,6 +25,7 @@ import { MdProgressCircleModule } from "@angular2-material/progress-circle";
 import { MdRippleModule } from "@angular2-material/core";
 import { MdGridListModule } from "@angular2-material/grid-list";
 import { MdCardModule } from "@angular2-material/card";
+import { MdInputModule } from "@angular2-material/input";
 
 import { routing } from "./app.routes";
 import { HomeComponent} from "./static/home.component";
@@ -49,6 +50,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     MdRippleModule,
     MdGridListModule,
     MdCardModule,
+    MdInputModule,
     routing
   ],
   declarations: [
