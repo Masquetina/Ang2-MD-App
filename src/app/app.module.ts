@@ -18,20 +18,18 @@ import { MdSidenavModule } from '@angular2-material/sidenav';
 import { MdButtonModule } from "@angular2-material/button";
 import { MdListModule } from "@angular2-material/list";
 import { MdIconModule } from "@angular2-material/icon";
-
-import { AppComponent } from "./app.component";
-import { SidenavComponent } from "./sidenav/sidenav.component";
-import { MdProgressCircleModule } from "@angular2-material/progress-circle";
-import { MdRippleModule } from "@angular2-material/core";
 import { MdGridListModule } from "@angular2-material/grid-list";
 import { MdCardModule } from "@angular2-material/card";
 import { MdInputModule } from "@angular2-material/input";
 
 import { routing } from "./app.routes";
+import { AppComponent } from "./app.component";
+import { SidenavComponent } from "./sidenav/sidenav.component";
 import { HomeComponent} from "./static/home.component";
 import { LoginComponent } from "./login/login.component";
 import { ProtectedComponent } from "./protected/protected.component";
 import { AuthService } from "./shared/auth.service";
+import { ToDoService } from "./protected/todo.service";
 import { AuthGuard } from "./shared/auth.guard";
 import { NonAuthGuard } from "./shared/non-auth.guard";
 
@@ -46,8 +44,6 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     MdButtonModule,
     MdListModule,
     MdIconModule,
-    MdProgressCircleModule,
-    MdRippleModule,
     MdGridListModule,
     MdCardModule,
     MdInputModule,
@@ -74,6 +70,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
       provider: AuthProviders.Google
     }),
     AuthService,
+    ToDoService,
     AuthGuard,
     NonAuthGuard
   ],

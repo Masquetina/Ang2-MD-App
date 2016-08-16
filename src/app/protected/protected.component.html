@@ -3,6 +3,19 @@
   <button md-fab color="primary" (click)="openModal();">
     <md-icon>add</md-icon>
   </button>
+  <md-list>
+    <div *ngFor="let todo of todos | async">
+      <md-list-item>
+        <md-icon md-list-icon>done</md-icon>
+        <p md-line>{{todo?.date}}</p>
+        <h2 md-line>{{todo?.title}}</h2>
+        <md-icon class="action" (click)="getToDo(todo?.$key)">more_vert</md-icon>
+        <md-icon class="action">edit</md-icon>
+        <md-icon class="action warn">clear</md-icon>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+  </md-list>
 </div>
 <div class="modal" *ngIf="modalDisplay != 'none'" [ngStyle]="{'display': 'modalDisplay'}">
   <md-toolbar fullscreen>
