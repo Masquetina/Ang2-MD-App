@@ -63,7 +63,7 @@ export class ProtectedComponent implements OnInit {
       'description': new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(25),
+        Validators.maxLength(100),
       ]),
     });
   }

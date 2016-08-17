@@ -1,6 +1,8 @@
 <div class="container">
   <h2 class="text-center">ToDo List</h2>
-  <button md-fab color="primary" (click)="openModal();">
+  <button md-fab
+          color="primary"
+          (click)="openModal();">
     <md-icon>add</md-icon>
   </button>
   <md-list>
@@ -9,7 +11,10 @@
         <md-icon md-list-icon>done</md-icon>
         <p md-line>{{todo?.date}}</p>
         <h2 md-line>{{todo?.title}}</h2>
-        <md-icon class="action" (click)="getToDo(todo?.$key)">more_vert</md-icon>
+        <a [routerLink]="['/protected', todo?.$key]">
+          <md-icon class="action"
+                   (click)="getToDo(todo?.$key)">description</md-icon>
+        </a>
         <md-icon class="action">edit</md-icon>
         <md-icon class="action warn">clear</md-icon>
       </md-list-item>
@@ -17,23 +22,23 @@
     </div>
   </md-list>
 </div>
-<div class="modal" *ngIf="modalDisplay != 'none'" [ngStyle]="{'display': 'modalDisplay'}">
+<div class="modal"
+     *ngIf="modalDisplay != 'none'"
+     [ngStyle]="{'display': 'modalDisplay'}">
   <md-toolbar fullscreen>
     <h4>Create New ToDo</h4>
     <span class="example-fill-remaining-space"></span>
-    <button md-icon-button (click)="closeModal();">
+    <button md-icon-button
+            (click)="closeModal();">
       <md-icon>close</md-icon>
     </button>
   </md-toolbar>
   <div class="container">
-    <form [formGroup]="ToDoForm" (ngSubmit)="onSave()">
+    <form [formGroup]="ToDoForm"
+          (ngSubmit)="onSave()">
       <div>
         <md-input #title
                   formControlName="title"
-                  minLength="5"
-                  maxLength="25"
-                  placeholder="Title"
-                  dividerColor="warn"
                   [dividerColor]="(!ToDoForm.find('title').valid && !ToDoForm.find('title').pristine) ? 'warn':'primary'">
           <md-hint align="end">{{title.characterCount}} / 25</md-hint>
         </md-input>
@@ -41,16 +46,18 @@
       <div>
         <md-input #description
                   formControlName="description"
-                  minLength="5"
-                  maxLength="100"
-                  placeholder="Description"
                   [dividerColor]="(!ToDoForm.find('description').valid && !ToDoForm.find('description').pristine) ? 'warn':'primary'">
           <md-hint align="end">{{description.characterCount}} / 100</md-hint>
         </md-input>
       </div>
       <div class="button-group pull-right">
-        <button md-button md-raised-button color="primary" [disabled]="!ToDoForm.valid">Save</button>
-        <button md-button color="primary" (click)="onCancel($event);">Cancel</button>
+        <button md-button
+                md-raised-button
+                color="primary"
+                [disabled]="!ToDoForm.valid">Save</button>
+        <button md-button
+                color="primary"
+                (click)="onCancel($event);">Cancel</button>
       </div>
       <div class="clearfix"></div>
     </form>
