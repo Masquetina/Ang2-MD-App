@@ -1,12 +1,15 @@
 export class ToDo {
 
-  constructor(public title: string,
+  constructor(public active: boolean,
+              public date: string,
               public description: string,
-              public active: boolean,
-              public date: Date) {
-    this.title = title;
-    this.description = description;
+              public title: string,
+              public user: string
+              ) {
     this.active = true;
-    this.date = new Date();
+    this.date = date;
+    this.description = description;
+    this.title = title;
+    this.user = user;
   }
 }

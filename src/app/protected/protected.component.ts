@@ -28,11 +28,26 @@ export class ProtectedComponent implements OnInit {
       });
   }
 
-  getToDo(key: number) {
-    this.af.database.object('todos/' + key)
-      .subscribe(todo =>
-        console.log(todo.description)
-      );
+  createToDo() {
+    const todos = this.af.database.list('/todos');
+    todos.push({
+      active: true,
+      date: new Date().toDateString(),
+      title: this.ToDoForm.value.title,
+      description: this.ToDoForm.value.description,
+      user: this.authService.getUser().email
+    });
+    this.closeModal();
+  }
+
+  doneToDo(id: number) {
+    this.af.database.object('todos/' + id).update({
+      active: false
+    });
+  }
+
+  deleteToDo(id: number) {
+    this.af.database.object('todos/' + id).remove();
   }
 
   openModal() {
@@ -47,10 +62,6 @@ export class ProtectedComponent implements OnInit {
   onCancel(event) {
     event.preventDefault();
     this.closeModal();
-  }
-
-  onSave() {
-
   }
 
   ngOnInit(): any {
