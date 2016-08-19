@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AngularFire } from "angularfire2";
-import { Observable } from "rxjs";
 import "rxjs/operator/filter";
 
 import { AuthService } from "../shared/auth.service";
-//import { ToDoService } from "./todo.service";
+import { ToDoService } from "./todo.service";
+import { ToDo } from "./todo";
+
 
 @Component({
   moduleId: module.id,
@@ -17,37 +17,26 @@ import { AuthService } from "../shared/auth.service";
 export class ProtectedComponent implements OnInit {
   modalDisplay = 'none';
   ToDoForm: FormGroup;
-  todos: Observable<any>;
+  todos: Array<ToDo>;
 
-  constructor(private af: AngularFire, private authService: AuthService) {
-    this.todos = this.af.database.list('todos')
-      .map(todos => {
-        const filtered = todos.filter(todo =>
-        todo.user === this.authService.getUser().email && todo.active === true);
-        return filtered;
-      });
-  }
+  constructor(private authService: AuthService, private todoService: ToDoService) { }
 
   createToDo() {
-    const todos = this.af.database.list('/todos');
-    todos.push({
-      active: true,
-      date: new Date().toDateString(),
-      title: this.ToDoForm.value.title,
-      description: this.ToDoForm.value.description,
-      user: this.authService.getUser().email
-    });
+    var active = true;
+    var date = new Date().toDateString();
+    var title = this.ToDoForm.value.title;
+    var description = this.ToDoForm.value.description;
+    var user = this.authService.getUser().email;
+    this.todoService.createToDo(active, date, title, description, user);
     this.closeModal();
   }
 
   doneToDo(id: number) {
-    this.af.database.object('todos/' + id).update({
-      active: false
-    });
+    this.todoService.doneToDo(id);
   }
 
   deleteToDo(id: number) {
-    this.af.database.object('todos/' + id).remove();
+    this.todoService.deleteToDo(id);
   }
 
   openModal() {
@@ -77,5 +66,8 @@ export class ProtectedComponent implements OnInit {
         Validators.maxLength(100),
       ]),
     });
+
+    this.todoService.getAll()
+      .subscribe(data => this.todos = data);
   }
 }
