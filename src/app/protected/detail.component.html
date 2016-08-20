@@ -1,5 +1,24 @@
 <div class="container">
   <h2 class="text-center">ToDo - {{(todo | async)?.title}}</h2>
-
-  {{(todo | async)?.description}}
+  <div *ngFor="let comment of comments | async">
+    <p>{{comment?.text}}</p>
+  </div>
+  <form [formGroup]="CommentsForm"
+        (ngSubmit)="submitCommentsForm(todo?.$key);">
+    <div>
+      <md-input #comment
+                formControlName="comment"
+                placeholder="Comment"
+                [dividerColor]="(!CommentsForm.find('comment').valid && !CommentsForm.find('comment').pristine) ? 'warn':'primary'">
+        <md-hint align="end">{{comment.characterCount}} / 250</md-hint>
+      </md-input>
+    </div>
+    <div class="button-group pull-right">
+      <button md-button
+              md-raised-button
+              color="primary"
+              [disabled]="!CommentsForm.valid">Save</button>
+    </div>
+    <div class="clearfix"></div>
+  </form>
 </div>

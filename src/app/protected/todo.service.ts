@@ -25,21 +25,20 @@ export class ToDoService {
     return this.af.database.object(`todos/${id}`, {preserveSnapshot: true});
   }
 
-  createToDo(active, date, title, description, user) {
+  createToDo(active, date, title, comments, user) {
     const todos = this.af.database.list('/todos');
     todos.push({
       active: active,
       date: date,
       title: title,
-      description: description,
+      comments: comments,
       user: user
     });
   }
 
-  editToDo(id, title, description) {
+  editToDo(id, title) {
     this.af.database.object(`todos/${id}`).update({
-      title: title,
-      description: description
+      title: title
     });
   }
 

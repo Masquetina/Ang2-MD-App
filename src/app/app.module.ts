@@ -32,6 +32,7 @@ import { DetailComponent } from "./protected/detail.component";
 
 import { AuthService } from "./shared/auth.service";
 import { ToDoService } from "./protected/todo.service";
+import { CommentService } from "./protected/comment.service";
 import { AuthGuard } from "./shared/auth.guard";
 import { NonAuthGuard } from "./shared/non-auth.guard";
 
@@ -74,6 +75,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     }),
     AuthService,
     ToDoService,
+    CommentService,
     AuthGuard,
     NonAuthGuard
   ],

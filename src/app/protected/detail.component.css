@@ -1,0 +1,14 @@
+form {
+  display: block;
+  margin: 0 auto;
+}
+form * {
+  font-weight: 300 !important;
+}
+form .button-group {
+  margin-top: 32px;
+}
+form md-input {
+  width: 100%;
+  color: rgba(0,0,0,.54) !important;
+}

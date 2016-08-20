@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
 
 import { AuthService } from "../shared/auth.service";
 import { ToDoService } from "./todo.service";
@@ -12,7 +13,8 @@ import { ToDo } from "./todo";
   styleUrls: ['protected.component.css'],
 })
 
-export class ProtectedComponent implements OnInit {
+export class ProtectedComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   modalDisplay = 'none';
   ToDoForm: FormGroup;
   todos: Array<ToDo>;
@@ -42,15 +44,14 @@ export class ProtectedComponent implements OnInit {
       var active = true;
       var date = new Date().toDateString();
       var title = this.ToDoForm.value.title;
-      var description = this.ToDoForm.value.description;
+      var comments = null;
       var user = this.authService.getUser().email;
-      this.todoService.createToDo(active, date, title, description, user);
+      this.todoService.createToDo(active, date, title, comments, user);
       this.closeModal();
     }
     if(this.button == 'edit') {
       title = this.ToDoForm.value.title;
-      description = this.ToDoForm.value.description;
-      this.todoService.editToDo(this.id, title, description);
+      this.todoService.editToDo(this.id, title);
       this.closeModal();
     }
   }
@@ -75,20 +76,19 @@ export class ProtectedComponent implements OnInit {
   }
 
   ngOnInit(): any {
+    this.subscription = this.todoService.getAll()
+      .subscribe(data => this.todos = data);
+    //
     this.ToDoForm = new FormGroup({
       'title': new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(25),
-      ]),
-      'description': new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(100),
-      ]),
+      ])
     });
+  }
 
-    this.todoService.getAll()
-      .subscribe(data => this.todos = data);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
