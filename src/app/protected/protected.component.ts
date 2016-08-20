@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import "rxjs/operator/filter";
 
 import { AuthService } from "../shared/auth.service";
 import { ToDoService } from "./todo.service";
 import { ToDo } from "./todo";
-
 
 @Component({
   moduleId: module.id,
@@ -18,17 +16,43 @@ export class ProtectedComponent implements OnInit {
   modalDisplay = 'none';
   ToDoForm: FormGroup;
   todos: Array<ToDo>;
+  @Input() todo: ToDo = null;
+  button: string;
+  id: string;
 
   constructor(private authService: AuthService, private todoService: ToDoService) { }
 
-  createToDo() {
-    var active = true;
-    var date = new Date().toDateString();
-    var title = this.ToDoForm.value.title;
-    var description = this.ToDoForm.value.description;
-    var user = this.authService.getUser().email;
-    this.todoService.createToDo(active, date, title, description, user);
-    this.closeModal();
+  openModal(id: number) {
+    this.modalDisplay = 'block';
+    if(id) {
+      this.button = 'edit';
+      this.todoService.getToDo(id)
+        .subscribe(snapshot => {
+          this.todo = snapshot.val()
+          this.id = snapshot.key
+      });
+    }
+    if(!id) {
+      this.button = 'create';
+    }
+  }
+
+  submitToDoForm () {
+    if(this.button == 'create') {
+      var active = true;
+      var date = new Date().toDateString();
+      var title = this.ToDoForm.value.title;
+      var description = this.ToDoForm.value.description;
+      var user = this.authService.getUser().email;
+      this.todoService.createToDo(active, date, title, description, user);
+      this.closeModal();
+    }
+    if(this.button == 'edit') {
+      title = this.ToDoForm.value.title;
+      description = this.ToDoForm.value.description;
+      this.todoService.editToDo(this.id, title, description);
+      this.closeModal();
+    }
   }
 
   doneToDo(id: number) {
@@ -39,13 +63,10 @@ export class ProtectedComponent implements OnInit {
     this.todoService.deleteToDo(id);
   }
 
-  openModal() {
-    this.modalDisplay = 'block';
-  }
-
   closeModal() {
     this.modalDisplay = 'none';
     this.ToDoForm.reset();
+    this.todo = null;
   }
 
   onCancel(event) {

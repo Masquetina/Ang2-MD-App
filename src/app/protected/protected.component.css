@@ -22,8 +22,7 @@ md-list div:hover {
 }
 md-list h2,
 md-list p {
-  color: rgba(0,0,0,.87);
-  font-weight: 300 !important;
+  color: rgba(0,0,0,.54);
 }
 md-list h2 {
   font-size: large;
@@ -90,4 +89,5 @@ md-list md-icon.warn:hover {
 }
 .modal form md-input {
   width: 100%;
+  color: rgba(0,0,0,.54) !important;
 }

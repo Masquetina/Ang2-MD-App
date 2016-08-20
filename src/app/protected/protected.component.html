@@ -14,7 +14,7 @@
         <a [routerLink]="['/protected', todo?.$key]">
           <md-icon class="action">description</md-icon>
         </a>
-        <md-icon class="action">edit</md-icon>
+        <md-icon class="action" (click)="openModal(todo?.$key);">edit</md-icon>
         <md-icon class="action warn" (click)="deleteToDo(todo?.$key);">clear</md-icon>
       </md-list-item>
     </div>
@@ -33,11 +33,12 @@
   </md-toolbar>
   <div class="container">
     <form [formGroup]="ToDoForm"
-          (ngSubmit)="createToDo();">
+          (ngSubmit)="submitToDoForm();">
       <div>
         <md-input #title
                   formControlName="title"
                   placeholder="Title"
+                  [ngModel]="todo?.title"
                   [dividerColor]="(!ToDoForm.find('title').valid && !ToDoForm.find('title').pristine) ? 'warn':'primary'">
           <md-hint align="end">{{title.characterCount}} / 25</md-hint>
         </md-input>
@@ -46,6 +47,7 @@
         <md-input #description
                   formControlName="description"
                   placeholder="Description"
+                  [ngModel]="todo?.description"
                   [dividerColor]="(!ToDoForm.find('description').valid && !ToDoForm.find('description').pristine) ? 'warn':'primary'">
           <md-hint align="end">{{description.characterCount}} / 100</md-hint>
         </md-input>

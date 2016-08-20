@@ -21,6 +21,10 @@ export class ToDoService {
       });
   }
 
+  getToDo(id: number) {
+    return this.af.database.object(`todos/${id}`, {preserveSnapshot: true});
+  }
+
   createToDo(active, date, title, description, user) {
     const todos = this.af.database.list('/todos');
     todos.push({
@@ -32,13 +36,20 @@ export class ToDoService {
     });
   }
 
+  editToDo(id, title, description) {
+    this.af.database.object(`todos/${id}`).update({
+      title: title,
+      description: description
+    });
+  }
+
   doneToDo(id: number) {
-    this.af.database.object('todos/' + id).update({
+    this.af.database.object(`todos/${id}`).update({
       active: false
     });
   }
 
   deleteToDo(id: number) {
-    this.af.database.object('todos/' + id).remove();
+    this.af.database.object(`todos/${id}`).remove();
   }
 }
