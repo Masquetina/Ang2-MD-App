@@ -1,3 +1,23 @@
+md-card:not(:first-child) {
+  margin-top: 16px;
+}
+md-card:last-child {
+  margin-bottom: 16px;
+}
+md-card *:not(button) {
+  cursor: default;
+  font-weight: 300 !important;
+  color: rgba(0,0,0,.54) !important;
+}
+md-card md-icon {
+  cursor: pointer;
+  vertical-align: top;
+  margin-left: 4px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 100%;
+  background-color: rgba(0,0,0,.08);
+}
 form {
   display: block;
   margin: 0 auto;
@@ -5,10 +25,10 @@ form {
 form * {
   font-weight: 300 !important;
 }
-form .button-group {
-  margin-top: 32px;
-}
 form md-input {
   width: 100%;
   color: rgba(0,0,0,.54) !important;
+}
+form button {
+  margin-top: 16px !important;
 }

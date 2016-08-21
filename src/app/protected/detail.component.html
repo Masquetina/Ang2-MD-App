@@ -1,24 +1,48 @@
 <div class="container">
-  <h2 class="text-center">ToDo - {{(todo | async)?.title}}</h2>
-  <div *ngFor="let comment of comments | async">
-    <p>{{comment?.text}}</p>
-  </div>
-  <form [formGroup]="CommentsForm"
-        (ngSubmit)="submitCommentsForm(todo?.$key);">
-    <div>
+  <h2 class="text-center">ToDo</h2>
+  <md-card>
+    <md-card-subtitle>
+      <span class="text-uppercase">Created on</span> {{(todo | async)?.date}}
+      <span class="pull-right">
+        <md-icon>done</md-icon>
+      </span>
+    </md-card-subtitle>
+    <md-card-subtitle>
+      <span class="text-uppercase">Priority</span>
+    </md-card-subtitle>
+    <div class="clearfix"></div>
+    <md-card-title>{{(todo | async)?.title}}</md-card-title>
+  </md-card>
+  <h2 class="text-center">Track Progress</h2>
+  <md-card *ngFor="let comment of comments | async">
+    <md-card-subtitle>
+      <span class="text-uppercase">Created on</span>
+      <span class="pull-right">
+        <md-icon>edit</md-icon>
+        <md-icon>clear</md-icon>
+      </span>
+    </md-card-subtitle>
+    <div class="clearfix"></div>
+    <md-card-content>{{comment?.text}}</md-card-content>
+  </md-card>
+
+  <md-card>
+    <md-card-subtitle class="text-uppercase">Comment your progress</md-card-subtitle>
+    <div class="clearfix"></div>
+    <form [formGroup]="CommentsForm"
+          (ngSubmit)="submitCommentsForm(todo?.$key);">
       <md-input #comment
                 formControlName="comment"
                 placeholder="Comment"
                 [dividerColor]="(!CommentsForm.find('comment').valid && !CommentsForm.find('comment').pristine) ? 'warn':'primary'">
         <md-hint align="end">{{comment.characterCount}} / 250</md-hint>
       </md-input>
-    </div>
-    <div class="button-group pull-right">
-      <button md-button
+      <button md-button class="pull-right"
               md-raised-button
               color="primary"
-              [disabled]="!CommentsForm.valid">Save</button>
-    </div>
-    <div class="clearfix"></div>
-  </form>
+              [disabled]="!CommentsForm.valid">Save
+      </button>
+      <div class="clearfix"></div>
+    </form>
+  </md-card>
 </div>

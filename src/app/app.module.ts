@@ -25,7 +25,7 @@ import { MdInputModule } from "@angular2-material/input";
 import { routing } from "./app.routes";
 import { AppComponent } from "./app.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
-import { HomeComponent} from "./static/home.component";
+import { HomeComponent } from "./static/home.component";
 import { LoginComponent } from "./login/login.component";
 import { ProtectedComponent } from "./protected/protected.component";
 import { DetailComponent } from "./protected/detail.component";
