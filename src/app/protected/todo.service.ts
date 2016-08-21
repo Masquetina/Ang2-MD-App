@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { AngularFire}  from "angularfire2";
+import { AngularFire }  from "angularfire2";
 import { Observable } from "rxjs";
 import "rxjs/operator/filter";
 
@@ -15,40 +15,56 @@ export class ToDoService {
   getAll() {
     return this.todos = this.af.database.list('todos')
       .map(todos => {
-        const filtered = todos.filter(todo =>
-          todo.user === this.authService.getUser().email && todo.active === true);
-        return filtered;
-      });
+        return todos
+          .filter(todo =>
+            todo.user === this.authService.getUser().email && todo.active === true)
+    })
   }
 
   getToDo(id: number) {
-    return this.af.database.object(`todos/${id}`, {preserveSnapshot: true});
+    return this.af.database
+      .object(`todos/${id}`, {preserveSnapshot: true})
   }
 
   createToDo(active, date, title, comments, user) {
-    const todos = this.af.database.list('/todos');
-    todos.push({
-      active: active,
-      date: date,
-      title: title,
-      comments: comments,
-      user: user
+    this.af.database.list('/todos')
+      .push({
+        active: active,
+        date: date,
+        title: title,
+        comments: comments,
+        user: user
+    })
+      .catch((error) => {
+        console.log("ERROR: " + error);
     });
   }
 
   editToDo(id, title) {
-    this.af.database.object(`todos/${id}`).update({
-      title: title
+    this.af.database.object(`todos/${id}`)
+      .update({
+        title: title
+    })
+      .catch((error) => {
+        console.log("ERROR: " + error);
     });
   }
 
   doneToDo(id: number) {
-    this.af.database.object(`todos/${id}`).update({
-      active: false
+    this.af.database.object(`todos/${id}`)
+      .update({
+        active: false
+    })
+      .catch((error) => {
+        console.log("ERROR: " + error);
     });
   }
 
   deleteToDo(id: number) {
-    this.af.database.object(`todos/${id}`).remove();
+    this.af.database.object(`todos/${id}`)
+      .remove()
+      .catch((error) => {
+        console.log("ERROR: " + error);
+    });
   }
 }

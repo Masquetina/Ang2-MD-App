@@ -30,9 +30,9 @@ export class ProtectedComponent implements OnInit, OnDestroy {
       this.button = 'edit';
       this.todoService.getToDo(id)
         .subscribe(snapshot => {
-          this.todo = snapshot.val()
-          this.id = snapshot.key
-      });
+          this.todo = snapshot.val();
+          this.id = snapshot.key;
+      })
     }
     if(!id) {
       this.button = 'create';
@@ -50,7 +50,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
       this.closeModal();
     }
     if(this.button == 'edit') {
-      title = this.ToDoForm.value.title;
+      var title = this.ToDoForm.value.title;
       this.todoService.editToDo(this.id, title);
       this.closeModal();
     }
@@ -77,7 +77,10 @@ export class ProtectedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): any {
     this.subscription = this.todoService.getAll()
-      .subscribe(data => this.todos = data);
+      .subscribe(
+        data => this.todos = data,
+        error => console.log("ERROR: " + error)
+      );
     //
     this.ToDoForm = new FormGroup({
       'title': new FormControl('', [
@@ -89,6 +92,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription
+      .unsubscribe();
   }
 }

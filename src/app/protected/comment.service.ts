@@ -12,6 +12,9 @@ export class CommentService {
     this.af.database.list(`todos/${id}/comments`)
       .push({
         text: comment
+    })
+      .catch((error) => {
+        console.log("ERROR: " + error);
     });
   }
 }

@@ -12,7 +12,7 @@ export class AuthService {
   constructor(public af: AngularFire, private router: Router) {
     this.af.auth.subscribe(
       user => this.changeState(user),
-      error => console.log("ERROR CODE: " + error.code)
+      error => console.log("ERROR: " + error)
     );
   }
 
@@ -34,8 +34,7 @@ export class AuthService {
   changeState(user: any = null) {
     if(user) {
       this.isAuth = true;
-      this.user =
-      {
+      this.user = {
         name: user.auth.providerData[0].displayName,
         email: user.auth.providerData[0].email,
         photoURL: user.auth.providerData[0].photoURL,
