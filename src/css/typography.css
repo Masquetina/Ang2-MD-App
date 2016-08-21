@@ -8,6 +8,10 @@ a {
 .example-fill-remaining-space {
   flex: 1 1 auto;
 }
+div.liner {
+  width: 100%;
+  border-bottom: 24px solid rgba(0,149,135,1);
+}
 body {
   font-family: 'Roboto', sans-serif;
   color: rgba(0,0,0,.87);
