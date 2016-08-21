@@ -1,14 +1,14 @@
 <div class="container">
+  <a [routerLink]="['/protected']">
+    <h2><md-icon class="link">navigate_before</md-icon>ToDo List</h2>
+  </a>
   <h2 class="text-center">ToDo</h2>
   <md-card>
     <md-card-subtitle>
-      <span class="text-uppercase">Created on</span> {{(todo | async)?.date}}
+      {{(todo | async)?.date}}
       <span class="pull-right">
         <md-icon>done</md-icon>
       </span>
-    </md-card-subtitle>
-    <md-card-subtitle>
-      <span class="text-uppercase">Priority</span>
     </md-card-subtitle>
     <div class="clearfix"></div>
     <md-card-title>{{(todo | async)?.title}}</md-card-title>
@@ -16,7 +16,7 @@
   <h2 class="text-center">Track Progress</h2>
   <md-card *ngFor="let comment of comments | async">
     <md-card-subtitle>
-      <span class="text-uppercase">Created on</span>
+      Sat Aug 20 2016
       <span class="pull-right">
         <md-icon>edit</md-icon>
         <md-icon>clear</md-icon>
@@ -37,11 +37,14 @@
                 [dividerColor]="(!CommentsForm.find('comment').valid && !CommentsForm.find('comment').pristine) ? 'warn':'primary'">
         <md-hint align="end">{{comment.characterCount}} / 250</md-hint>
       </md-input>
-      <button md-button class="pull-right"
-              md-raised-button
-              color="primary"
-              [disabled]="!CommentsForm.valid">Save
-      </button>
+      <div class="pull-right">
+        <button md-button
+                md-raised-button
+                color="primary"
+                [disabled]="!CommentsForm.valid">Save</button>
+        <button md-button
+                color="primary">Cancel</button>
+      </div>
       <div class="clearfix"></div>
     </form>
   </md-card>

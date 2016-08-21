@@ -1,3 +1,16 @@
+a {
+  color: rgba(0,150,136,.87) !important;
+}
+a h2 {
+  display: inline-block;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+md-icon.link {
+  vertical-align: top;
+  margin-right: 2px;
+  padding: 2px;
+}
 md-card:not(:first-child) {
   margin-top: 16px;
 }
