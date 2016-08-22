@@ -17,7 +17,7 @@
   <h2 class="text-center">Track Progress</h2>
   <md-card *ngFor="let comment of comments | async">
     <md-card-subtitle>
-      Sat Aug 20 2016
+      {{comment?.date}}
       <span class="pull-right">
         <md-icon class="action" (click)="editComment(comment?.$key);">edit</md-icon>
         <md-icon class="action warn" (click)="deleteComment(comment?.$key);">clear</md-icon>

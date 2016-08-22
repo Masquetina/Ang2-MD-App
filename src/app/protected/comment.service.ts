@@ -8,9 +8,10 @@ export class CommentService {
 
   constructor(private af: AngularFire) { }
 
-  createComment(commentId, comment) {
+  createComment(commentId, date, comment) {
     this.af.database.list(`todos/${commentId}/comments`)
       .push({
+        date: date,
         text: comment
       })
       .catch((error) => {
@@ -26,7 +27,7 @@ export class CommentService {
   editComment(todoId, commentId, comment) {
     this.af.database.object(`todos/${todoId}/comments/${commentId}`)
       .update({
-        text: comment
+        text: comment,
       })
       .catch((error) => {
         console.log("ERROR: " + error);

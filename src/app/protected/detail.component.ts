@@ -45,8 +45,9 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   submitCommentForm() {
     if(this.button == 'create') {
+      var date = new Date().toDateString();
       var comment = this.CommentForm.value.comment;
-      this.commentService.createComment(this.todoId, comment);
+      this.commentService.createComment(this.todoId, date, comment);
     }
     if(this.button == 'edit') {
       var comment = this.CommentForm.value.comment;
