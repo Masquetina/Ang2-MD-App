@@ -64,6 +64,7 @@ md-list md-icon.warn:hover {
   animation-name: openModal;
   animation-timing-function: ease-out;
   animation-duration: .15s;
+  z-index: 9999;
 }
 @keyframes openModal {
   0% {

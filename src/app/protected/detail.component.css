@@ -19,17 +19,26 @@ md-card:last-child {
 }
 md-card *:not(button) {
   cursor: default;
-  font-weight: 300 !important;
-  color: rgba(0,0,0,.54) !important;
+  font-weight: 300;
+  color: rgba(0,0,0,.54);
 }
-md-card md-icon {
+md-card md-icon.action {
   cursor: pointer;
-  vertical-align: top;
-  margin-left: 4px;
-  margin-bottom: 8px;
+  color: rgba(0,0,0,.54);
+  margin: 0 4px;
   padding: 8px;
   border-radius: 100%;
+}
+md-card md-icon.action:hover {
   background-color: rgba(0,0,0,.08);
+}
+md-card md-icon.primary:hover {
+  color: rgba(0,150,136,1);
+  background-color: rgba(0,150,136,.08);
+}
+md-card md-icon.warn:hover {
+  color: rgba(244,67,54,1);
+  background-color: rgba(244,67,54,.08);
 }
 form {
   display: block;

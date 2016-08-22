@@ -8,7 +8,7 @@
     <md-card-subtitle>
       {{(todo | async)?.date}}
       <span class="pull-right">
-        <md-icon>done</md-icon>
+        <md-icon class="action primary" (click)="doneToDo(todo?.$key);">done</md-icon>
       </span>
     </md-card-subtitle>
     <div class="clearfix"></div>
@@ -19,8 +19,8 @@
     <md-card-subtitle>
       Sat Aug 20 2016
       <span class="pull-right">
-        <md-icon>edit</md-icon>
-        <md-icon>clear</md-icon>
+        <md-icon class="action" (click)="editComment(comment?.$key);">edit</md-icon>
+        <md-icon class="action warn" (click)="deleteComment(comment?.$key);">clear</md-icon>
       </span>
     </md-card-subtitle>
     <div class="clearfix"></div>
@@ -30,20 +30,22 @@
   <md-card>
     <md-card-subtitle class="text-uppercase">Comment your progress</md-card-subtitle>
     <div class="clearfix"></div>
-    <form [formGroup]="CommentsForm"
-          (ngSubmit)="submitCommentsForm(todo?.$key);">
+    <form [formGroup]="CommentForm"
+          (ngSubmit)="submitCommentForm();">
       <md-input #comment
                 formControlName="comment"
                 placeholder="Comment"
-                [dividerColor]="(!CommentsForm.find('comment').valid && !CommentsForm.find('comment').pristine) ? 'warn':'primary'">
+                [ngModel]="commentObj?.text"
+                [dividerColor]="(!CommentForm.find('comment').valid && !CommentForm.find('comment').pristine) ? 'warn':'primary'">
         <md-hint align="end">{{comment.characterCount}} / 250</md-hint>
       </md-input>
       <div class="pull-right">
         <button md-button
                 md-raised-button
                 color="primary"
-                [disabled]="!CommentsForm.valid">Save</button>
+                [disabled]="!CommentForm.valid">Save</button>
         <button md-button
+                (click)="onCancel($event);"
                 color="primary">Cancel</button>
       </div>
       <div class="clearfix"></div>

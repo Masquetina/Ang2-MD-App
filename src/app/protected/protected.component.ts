@@ -20,21 +20,29 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   todos: Array<ToDo>;
   @Input() todo: ToDo = null;
   button: string;
-  id: string;
+  todoId: string;
 
-  constructor(private authService: AuthService, private todoService: ToDoService) { }
+  constructor(private authService: AuthService, private todoService: ToDoService) {
+    this.ToDoForm = new FormGroup({
+      'title': new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25),
+      ])
+    });
+  }
 
-  openModal(id: number) {
+  openModal(todoId) {
     this.modalDisplay = 'block';
-    if(id) {
+    if(todoId) {
       this.button = 'edit';
-      this.todoService.getToDo(id)
+      this.todoService.getToDo(todoId)
         .subscribe(snapshot => {
           this.todo = snapshot.val();
-          this.id = snapshot.key;
-      })
+          this.todoId = snapshot.key;
+        })
     }
-    if(!id) {
+    if(!todoId) {
       this.button = 'create';
     }
   }
@@ -51,17 +59,17 @@ export class ProtectedComponent implements OnInit, OnDestroy {
     }
     if(this.button == 'edit') {
       var title = this.ToDoForm.value.title;
-      this.todoService.editToDo(this.id, title);
+      this.todoService.editToDo(this.todoId, title);
       this.closeModal();
     }
   }
 
-  doneToDo(id: number) {
-    this.todoService.doneToDo(id);
+  doneToDo(todoId) {
+    this.todoService.doneToDo(todoId);
   }
 
-  deleteToDo(id: number) {
-    this.todoService.deleteToDo(id);
+  deleteToDo(todoId) {
+    this.todoService.deleteToDo(todoId);
   }
 
   closeModal() {
@@ -81,14 +89,6 @@ export class ProtectedComponent implements OnInit, OnDestroy {
         data => this.todos = data,
         error => console.log("ERROR: " + error)
       );
-    //
-    this.ToDoForm = new FormGroup({
-      'title': new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(25),
-      ])
-    });
   }
 
   ngOnDestroy() {

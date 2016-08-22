@@ -8,13 +8,36 @@ export class CommentService {
 
   constructor(private af: AngularFire) { }
 
-  createComment(id, comment) {
-    this.af.database.list(`todos/${id}/comments`)
+  createComment(commentId, comment) {
+    this.af.database.list(`todos/${commentId}/comments`)
       .push({
         text: comment
-    })
+      })
       .catch((error) => {
         console.log("ERROR: " + error);
-    });
+      });
+  }
+
+  getComment(todoId, commentId) {
+    return this.af.database
+      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true })
+  }
+
+  editComment(todoId, commentId, comment) {
+    this.af.database.object(`todos/${todoId}/comments/${commentId}`)
+      .update({
+        text: comment
+      })
+      .catch((error) => {
+        console.log("ERROR: " + error);
+      });
+  }
+
+  deleteComment(todoId, commentId) {
+    this.af.database.object(`todos/${todoId}/comments/${commentId}`)
+      .remove()
+      .catch((error) => {
+        console.log("ERROR: " + error);
+      });
   }
 }

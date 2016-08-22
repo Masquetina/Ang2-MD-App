@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-
 import { AngularFire }  from "angularfire2";
 import { Observable } from "rxjs";
 import "rxjs/operator/filter";
@@ -18,12 +17,12 @@ export class ToDoService {
         return todos
           .filter(todo =>
             todo.user === this.authService.getUser().email && todo.active === true)
-    })
+      })
   }
 
-  getToDo(id: number) {
+  getToDo(todoId) {
     return this.af.database
-      .object(`todos/${id}`, {preserveSnapshot: true})
+      .object(`todos/${todoId}`, { preserveSnapshot: true })
   }
 
   createToDo(active, date, title, comments, user) {
@@ -34,37 +33,37 @@ export class ToDoService {
         title: title,
         comments: comments,
         user: user
-    })
+      })
       .catch((error) => {
         console.log("ERROR: " + error);
-    });
+      });
   }
 
-  editToDo(id, title) {
-    this.af.database.object(`todos/${id}`)
+  editToDo(todoId, title) {
+    this.af.database.object(`todos/${todoId}`)
       .update({
         title: title
-    })
+      })
       .catch((error) => {
         console.log("ERROR: " + error);
-    });
+      });
   }
 
-  doneToDo(id: number) {
-    this.af.database.object(`todos/${id}`)
+  doneToDo(todoId) {
+    this.af.database.object(`todos/${todoId}`)
       .update({
         active: false
-    })
+      })
       .catch((error) => {
         console.log("ERROR: " + error);
-    });
+      });
   }
 
-  deleteToDo(id: number) {
-    this.af.database.object(`todos/${id}`)
+  deleteToDo(todoId) {
+    this.af.database.object(`todos/${todoId}`)
       .remove()
       .catch((error) => {
         console.log("ERROR: " + error);
-    });
+      });
   }
 }
