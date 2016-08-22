@@ -23,10 +23,10 @@ md-card *:not(button) {
   color: rgba(0,0,0,.54);
 }
 md-card md-icon.action:not(:first-child) {
-  margin-left: 4px;
+  margin-left: 8px;
 }
 md-card md-icon.action:last-child {
-  margin-right: -4px;
+  margin-right: -2px;
 }
 md-card md-icon.action {
   cursor: pointer;

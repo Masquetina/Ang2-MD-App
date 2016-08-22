@@ -39,10 +39,15 @@ md-list md-icon[md-list-icon]:hover {
   color: rgba(0,150,136,1);
   background-color: rgba(0,150,136,.08);
 }
+md-list md-icon.action:not(:first-child) {
+  margin-left: 8px;
+}
+md-list md-icon.action:last-child {
+  margin-right: 4px;
+}
 md-list md-icon.action {
   cursor: pointer;
   color: rgba(0,0,0,.54);
-  margin: 0 4px;
   padding: 8px;
   border-radius: 100%;
 }
