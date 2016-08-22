@@ -21,7 +21,7 @@ export class CommentService {
 
   getComment(todoId, commentId) {
     return this.af.database
-      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true })
+      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true });
   }
 
   editComment(todoId, commentId, comment) {

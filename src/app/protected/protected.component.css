@@ -1,3 +1,13 @@
+div > md-progress-circle {
+  position: absolute;
+  left: calc(50% - 32px);
+  top: calc(50% - 64px);
+}
+md-progress-circle {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
 button[md-fab] {
   display: block;
   margin: 0 auto;

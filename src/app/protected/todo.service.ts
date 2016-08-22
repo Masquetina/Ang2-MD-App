@@ -17,7 +17,7 @@ export class ToDoService {
         return todos
           .filter(todo =>
             todo.user === this.authService.getUser().email && todo.active === true)
-      })
+      });
   }
 
   getToDo(todoId) {

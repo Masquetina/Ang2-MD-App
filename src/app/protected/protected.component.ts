@@ -20,15 +20,27 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   @Input() todo: ToDo = null;
   button: string;
   todoId: string;
+  load: boolean = true;
+  asyncLoading = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(
+      this.subscription = this.todoService.getAll()
+        .subscribe(
+          data => this.todos = data,
+          error => console.log("ERROR: " + error)
+        )
+    ), 1000);
+  });
 
-  constructor(private authService: AuthService, private todoService: ToDoService) {
-    this.ToDoForm = new FormGroup({
-      'title': new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(25),
-      ])
-    });
+  constructor(private authService: AuthService, private todoService: ToDoService) { }
+
+  isLoading() {
+    if(this.todos == null) {
+      this.load = true;
+    }
+    if(this.todos != null) {
+      this.load = false;
+    }
+    return this.load;
   }
 
   openModal(todoId) {
@@ -39,7 +51,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
         .subscribe(snapshot => {
           this.todo = snapshot.val();
           this.todoId = snapshot.key;
-        })
+        });
     }
     if(!todoId) {
       this.button = 'create';
@@ -83,11 +95,13 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
-    this.subscription = this.todoService.getAll()
-      .subscribe(
-        data => this.todos = data,
-        error => console.log("ERROR: " + error)
-      );
+    this.ToDoForm = new FormGroup({
+      'title': new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25),
+      ])
+    });
   }
 
   ngOnDestroy() {

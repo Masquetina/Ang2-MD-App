@@ -80,7 +80,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.CommentForm.reset();
   }
 
-  ngOnInit() {
+  ngOnInit(): any {
     this.subscription = this.route.params
       .map(params => {
         return this.todoId = params['id'];

@@ -21,6 +21,7 @@ import { MdIconModule } from "@angular2-material/icon";
 import { MdGridListModule } from "@angular2-material/grid-list";
 import { MdCardModule } from "@angular2-material/card";
 import { MdInputModule } from "@angular2-material/input";
+import { MdProgressCircleModule } from "@angular2-material/progress-circle";
 
 import { routing } from "./app.routes";
 import { AppComponent } from "./app.component";
@@ -50,6 +51,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     MdGridListModule,
     MdCardModule,
     MdInputModule,
+    MdProgressCircleModule,
     routing
   ],
   declarations: [
