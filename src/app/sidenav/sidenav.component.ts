@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../shared/auth.service";
 
-
 @Component({
   moduleId: module.id,
   selector: 'web-sidenav',

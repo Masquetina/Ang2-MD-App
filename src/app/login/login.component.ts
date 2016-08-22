@@ -18,5 +18,4 @@ export class LoginComponent {
   isAuth() {
     return this.authService.isAuth;
   }
-
 }

@@ -81,4 +81,4 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

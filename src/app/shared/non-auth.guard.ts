@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Rx";
 @Injectable()
 export class NonAuthGuard implements CanActivate {
 
-  constructor(private auth: AngularFireAuth, private router: Router) {}
+  constructor(private auth: AngularFireAuth, private router: Router) { }
 
   canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):
     Observable<boolean>|boolean {

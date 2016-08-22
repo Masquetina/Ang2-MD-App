@@ -12,7 +12,6 @@ import { ToDo } from "./todo";
   templateUrl: 'protected.component.html',
   styleUrls: ['protected.component.css'],
 })
-
 export class ProtectedComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   modalDisplay = 'none';
