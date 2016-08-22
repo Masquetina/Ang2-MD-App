@@ -22,10 +22,17 @@ md-card *:not(button) {
   font-weight: 300;
   color: rgba(0,0,0,.54);
 }
+md-card md-icon.action:not(:first-child) {
+  margin-left: 4px;
+}
+md-card md-icon.action:last-child {
+  margin-right: -4px;
+}
 md-card md-icon.action {
   cursor: pointer;
   color: rgba(0,0,0,.54);
-  margin: 0 4px;
+  margin-top: -4px;
+  margin-bottom: 8px;
   padding: 8px;
   border-radius: 100%;
 }
