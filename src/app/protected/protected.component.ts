@@ -23,7 +23,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private todoService: ToDoService) { }
 
-  asyncLoading = new Promise((resolve) => {
+  /*asyncLoading = new Promise((resolve) => {
     setTimeout(() => resolve(
       this.subscription = this.todoService.getAll()
         .subscribe(
@@ -31,7 +31,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
           error => console.log("ERROR: " + error)
         )
     ), 1000);
-  });
+  });*/
 
   isLoading() {
     if(this.todos == null)
@@ -92,6 +92,12 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
+    this.subscription = this.todoService.getAll()
+      .subscribe(
+        data => this.todos = data,
+        error => console.log("ERROR: " + error)
+      )
+    //
     this.ToDoForm = new FormGroup({
       'title': new FormControl('', [
         Validators.required,
