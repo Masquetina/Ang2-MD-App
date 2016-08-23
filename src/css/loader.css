@@ -40,3 +40,8 @@
     transform: rotate(360deg);
   }
 }
+md-progress-circle {
+  position: relative;
+  display: block;
+  margin: calc(5%) auto 0 auto;
+}

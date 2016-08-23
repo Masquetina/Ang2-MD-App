@@ -28,15 +28,7 @@ export class DetailComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private commentService: CommentService,
               private todoService: ToDoService,
-              private router: Router) {
-    this.CommentForm = new FormGroup({
-      'comment': new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(250),
-      ])
-    });
-  }
+              private router: Router) { }
 
   doneToDo() {
     this.todoService.doneToDo(this.todoId);
@@ -89,6 +81,14 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.todo = this.af.database.object(`todos/${todoId}`);
         this.comments = this.af.database.list(`todos/${todoId}/comments`);
       });
+    //
+    this.CommentForm = new FormGroup({
+      'comment': new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(250),
+      ])
+    });
   }
 
   ngOnDestroy() {

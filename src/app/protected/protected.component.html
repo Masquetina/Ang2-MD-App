@@ -6,9 +6,10 @@
           (click)="openModal();">
     <md-icon>add</md-icon>
   </button>
-  <div *ngIf="isLoading();">
-    <md-progress-circle mode="indeterminate" color="primary"></md-progress-circle>
-  </div>
+  <md-progress-circle mode="indeterminate"
+                      color="primary"
+                      *ngIf="isLoading();">
+  </md-progress-circle>
   <md-list>
     <div *ngFor="let todo of todos">
       <md-list-item>

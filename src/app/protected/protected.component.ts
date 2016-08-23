@@ -20,8 +20,11 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   @Input() todo: ToDo = null;
   button: string;
   todoId: string;
-  load: boolean = true;
-  asyncLoading = new Promise((resolve, reject) => {
+  loader: boolean = true;
+
+  constructor(private authService: AuthService, private todoService: ToDoService) { }
+
+  asyncLoading = new Promise((resolve) => {
     setTimeout(() => resolve(
       this.subscription = this.todoService.getAll()
         .subscribe(
@@ -31,16 +34,10 @@ export class ProtectedComponent implements OnInit, OnDestroy {
     ), 1000);
   });
 
-  constructor(private authService: AuthService, private todoService: ToDoService) { }
-
   isLoading() {
-    if(this.todos == null) {
-      this.load = true;
-    }
-    if(this.todos != null) {
-      this.load = false;
-    }
-    return this.load;
+    if(this.todos == null) this.loader = true;
+    if(this.todos != null) this.loader = false;
+    return this.loader;
   }
 
   openModal(todoId) {
