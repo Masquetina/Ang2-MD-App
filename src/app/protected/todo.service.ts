@@ -8,6 +8,7 @@ import { AuthService } from "../shared/auth.service";
 @Injectable()
 export class ToDoService {
   todos: Observable<any>;
+  message: string;
 
   constructor(private af: AngularFire, private authService: AuthService) { }
 
@@ -26,43 +27,60 @@ export class ToDoService {
   }
 
   createToDo(active, date, title, comments, user) {
-    this.af.database.list('/todos')
+    const promise = this.af.database.list('/todos')
       .push({
         active: active,
         date: date,
         title: title,
         comments: comments,
         user: user
+      });
+    promise
+      .then(() => {
+        console.log('success')
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
 
   editToDo(todoId, title) {
-    this.af.database.object(`todos/${todoId}`)
+    const promise = this.af.database.object(`todos/${todoId}`)
       .update({
         title: title
+      });
+    promise
+      .then(() => {
+        this.message = 'Updated!';
+        console.log(this.message);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
 
   doneToDo(todoId) {
-    this.af.database.object(`todos/${todoId}`)
+    const promise = this.af.database.object(`todos/${todoId}`)
       .update({
         active: false
+      });
+    promise
+      .then(() => {
+        console.log('success')
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
 
   deleteToDo(todoId) {
-    this.af.database.object(`todos/${todoId}`)
-      .remove()
-      .catch((error) => {
+    const promise = this.af.database.object(`todos/${todoId}`)
+      .remove();
+    promise
+      .then(() => {
+        console.log('success')
+      })
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }

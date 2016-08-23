@@ -20,7 +20,6 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   @Input() todo: ToDo = null;
   button: string;
   todoId: string;
-  loader: boolean = true;
 
   constructor(private authService: AuthService, private todoService: ToDoService) { }
 
@@ -35,9 +34,10 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   });
 
   isLoading() {
-    if(this.todos == null) this.loader = true;
-    if(this.todos != null) this.loader = false;
-    return this.loader;
+    if(this.todos == null)
+      return true;
+    if(this.todos != null)
+      return false;
   }
 
   openModal(todoId) {

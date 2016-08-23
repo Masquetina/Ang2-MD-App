@@ -9,35 +9,47 @@ export class CommentService {
   constructor(private af: AngularFire) { }
 
   createComment(commentId, date, comment) {
-    this.af.database.list(`todos/${commentId}/comments`)
+    const promise = this.af.database.list(`todos/${commentId}/comments`)
       .push({
         date: date,
         text: comment
+      });
+    promise
+      .then(() => {
+        console.log('success')
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
 
   getComment(todoId, commentId) {
     return this.af.database
-      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true });
+      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true })
   }
 
   editComment(todoId, commentId, comment) {
-    this.af.database.object(`todos/${todoId}/comments/${commentId}`)
+    const promise = this.af.database.object(`todos/${todoId}/comments/${commentId}`)
       .update({
         text: comment,
+      });
+    promise
+      .then(() => {
+        console.log('success')
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
 
   deleteComment(todoId, commentId) {
-    this.af.database.object(`todos/${todoId}/comments/${commentId}`)
-      .remove()
-      .catch((error) => {
+    const promise = this.af.database.object(`todos/${todoId}/comments/${commentId}`)
+      .remove();
+    promise
+      .then(() => {
+        console.log('success')
+      })
+      .catch(error => {
         console.log("ERROR: " + error);
       });
   }
