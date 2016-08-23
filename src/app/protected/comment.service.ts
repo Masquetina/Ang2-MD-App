@@ -1,15 +1,26 @@
 import { Injectable } from "@angular/core";
 import { AngularFire}  from "angularfire2";
 import { FirebaseListObservable } from "angularfire2";
+//import { Observable } from "rxjs";
 
 @Injectable()
 export class CommentService {
   todo: FirebaseListObservable<any>;
+  //comments: Observable<any>;
 
   constructor(private af: AngularFire) { }
 
-  createComment(commentId, date, comment) {
-    const promise = this.af.database.list(`todos/${commentId}/comments`)
+  /*getAll(todoId, commentId) {
+    return this.comments = this.af.database.list(`todos/${todoId}/comments/${commentId}`);
+  }*/
+
+  getComment(todoId, commentId) {
+    return this.af.database
+      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true })
+  }
+
+  createComment(todoId, date, comment) {
+    const promise = this.af.database.list(`todos/${todoId}/comments`)
       .push({
         date: date,
         text: comment
@@ -21,11 +32,6 @@ export class CommentService {
       .catch(error => {
         console.log("ERROR: " + error);
       });
-  }
-
-  getComment(todoId, commentId) {
-    return this.af.database
-      .object(`todos/${todoId}/comments/${commentId}`, { preserveSnapshot: true })
   }
 
   editComment(todoId, commentId, comment) {

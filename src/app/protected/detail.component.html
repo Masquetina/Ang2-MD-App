@@ -6,19 +6,19 @@
   <h2 class="text-center">ToDo</h2>
   <md-progress-circle mode="indeterminate"
                       color="primary"
-                      *ngIf="(todo | async) == null">
+                      *ngIf="todo == null">
   </md-progress-circle>
-  <md-card *ngIf="(todo | async) != null">
+  <md-card *ngIf="todo != null">
     <md-card-subtitle>
-      {{(todo | async)?.date}}
+      {{todo?.date}}
       <span class="pull-right">
         <md-icon class="action primary" (click)="doneToDo(todo?.$key);">done</md-icon>
       </span>
     </md-card-subtitle>
     <div class="clearfix"></div>
-    <md-card-title>{{(todo | async)?.title}}</md-card-title>
+    <md-card-title>{{todo?.title}}</md-card-title>
   </md-card>
-  <h2 class="text-center" *ngIf="(todo | async) != null">Track Progress</h2>
+  <h2 class="text-center" *ngIf="todo != null">Track Progress</h2>
   <div *ngFor="let comment of comments | async">
     <md-card *ngIf="comment != null">
       <md-card-subtitle>
@@ -32,7 +32,7 @@
       <md-card-content>{{comment?.text}}</md-card-content>
     </md-card>
   </div>
-  <md-card *ngIf="(todo | async) != null">
+  <md-card *ngIf="todo != null">
     <md-card-subtitle class="text-uppercase">Comment your progress</md-card-subtitle>
     <div class="clearfix"></div>
     <form [formGroup]="CommentForm"

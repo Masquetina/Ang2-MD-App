@@ -19,6 +19,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   CommentForm: FormGroup;
   todo: FirebaseObjectObservable<any>;
   comments: FirebaseListObservable<any>;
+  //comments: Array<Comment>;
   @Input() commentObj: Comment = null;
   button: string = 'create';
   todoId: string;
@@ -78,8 +79,17 @@ export class DetailComponent implements OnInit, OnDestroy {
         return this.todoId = params['id'];
       })
       .subscribe(todoId => {
-        this.todo = this.af.database.object(`todos/${todoId}`);
-        this.comments = this.af.database.list(`todos/${todoId}/comments`);
+        this.todoService.getToDo(todoId)
+          .subscribe(snapshot => {
+            this.todo = snapshot.val();
+            this.todoId = snapshot.key;
+            this.comments = this.af.database.list(`todos/${todoId}/comments`);
+        });
+        /*this.subscription = this.commentService.getAll(todoId, this.commentId)
+          .subscribe(
+            data => this.comments = data,
+            error => console.log("ERROR: " + error)
+          );*/
       });
     //
     this.CommentForm = new FormGroup({

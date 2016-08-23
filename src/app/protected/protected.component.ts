@@ -23,16 +23,6 @@ export class ProtectedComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private todoService: ToDoService) { }
 
-  /*asyncLoading = new Promise((resolve) => {
-    setTimeout(() => resolve(
-      this.subscription = this.todoService.getAll()
-        .subscribe(
-          data => this.todos = data,
-          error => console.log("ERROR: " + error)
-        )
-    ), 1000);
-  });*/
-
   isLoading() {
     if(this.todos == null)
       return true;
@@ -96,7 +86,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
       .subscribe(
         data => this.todos = data,
         error => console.log("ERROR: " + error)
-      )
+      );
     //
     this.ToDoForm = new FormGroup({
       'title': new FormControl('', [
