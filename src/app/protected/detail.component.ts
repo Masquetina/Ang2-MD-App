@@ -93,7 +93,7 @@ export class DetailComponent implements OnInit, OnDestroy {
            error => console.log("ERROR: " + error)
            );*/
         });
-    //} else this.router.navigate(['/home']);
+    //} else this.router.navigateByInstruction(router.generate(['/404']), true);
     //
     this.CommentForm = new FormGroup({
       'comment': new FormControl('', [
