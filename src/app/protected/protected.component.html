@@ -10,6 +10,9 @@
                       color="primary"
                       *ngIf="isLoading();">
   </md-progress-circle>
+  <div *ngIf="(todos)?.length == 0 ? true : false;">
+
+  </div>
   <md-list>
     <div *ngFor="let todo of todos">
       <md-list-item>

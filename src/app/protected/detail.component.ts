@@ -74,23 +74,26 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
-    this.subscription = this.route.params
-      .map(params => {
-        return this.todoId = params['id'];
-      })
-      .subscribe(todoId => {
-        this.todoService.getToDo(todoId)
-          .subscribe(snapshot => {
-            this.todo = snapshot.val();
-            this.todoId = snapshot.key;
-            this.comments = this.af.database.list(`todos/${todoId}/comments`);
+    // var todoId = JSON.parse(JSON.stringify(this.route.params))._value.id;
+    // if(this.todoService.doesExists(todoId)) {
+      this.subscription = this.route.params
+        .map(params => {
+          return this.todoId = params['id'];
+        })
+        .subscribe(todoId => {
+          this.todoService.getToDo(todoId)
+            .subscribe(snapshot => {
+              this.todo = snapshot.val();
+              this.todoId = snapshot.key;
+              this.comments = this.af.database.list(`todos/${todoId}/comments`);
+            });
+          /*this.subscription = this.commentService.getAll(todoId, this.commentId)
+           .subscribe(
+           data => this.comments = data,
+           error => console.log("ERROR: " + error)
+           );*/
         });
-        /*this.subscription = this.commentService.getAll(todoId, this.commentId)
-          .subscribe(
-            data => this.comments = data,
-            error => console.log("ERROR: " + error)
-          );*/
-      });
+    //} else this.router.navigate(['/home']);
     //
     this.CommentForm = new FormGroup({
       'comment': new FormControl('', [

@@ -21,6 +21,16 @@ export class ToDoService {
       });
   }
 
+  /*doesExists(todoId) {
+    this.af.database.object(todoId).subscribe((obj) => {
+      if(obj.$exists()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }*/
+
   getToDo(todoId) {
     return this.af.database
       .object(`todos/${todoId}`, { preserveSnapshot: true })
