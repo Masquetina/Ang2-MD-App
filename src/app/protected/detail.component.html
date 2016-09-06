@@ -16,7 +16,7 @@
       </span>
     </md-card-subtitle>
     <div class="clearfix"></div>
-    <md-card-title>{{todo?.title}}</md-card-title>
+    <md-card-title class="{{todo?.priority}}">{{todo?.title}}</md-card-title>
   </md-card>
   <h2 class="text-center" *ngIf="todo != null">Track Progress</h2>
   <div *ngFor="let comment of comments | async">

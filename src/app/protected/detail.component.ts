@@ -19,7 +19,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   CommentForm: FormGroup;
   todo: FirebaseObjectObservable<any>;
   comments: FirebaseListObservable<any>;
-  //comments: Array<Comment>;
   @Input() commentObj: Comment = null;
   button: string = 'create';
   todoId: string;
@@ -74,8 +73,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
-    // var todoId = JSON.parse(JSON.stringify(this.route.params))._value.id;
-    // if(this.todoService.doesExists(todoId)) {
       this.subscription = this.route.params
         .map(params => {
           return this.todoId = params['id'];
@@ -87,13 +84,7 @@ export class DetailComponent implements OnInit, OnDestroy {
               this.todoId = snapshot.key;
               this.comments = this.af.database.list(`todos/${todoId}/comments`);
             });
-          /*this.subscription = this.commentService.getAll(todoId, this.commentId)
-           .subscribe(
-           data => this.comments = data,
-           error => console.log("ERROR: " + error)
-           );*/
         });
-    //} else this.router.navigateByInstruction(router.generate(['/404']), true);
     //
     this.CommentForm = new FormGroup({
       'comment': new FormControl('', [

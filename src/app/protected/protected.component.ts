@@ -20,6 +20,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   @Input() todo: ToDo = null;
   button: string;
   todoId: string;
+  priority: string = '';
 
   constructor(private authService: AuthService, private todoService: ToDoService) { }
 
@@ -45,19 +46,25 @@ export class ProtectedComponent implements OnInit, OnDestroy {
     }
   }
 
+  chagePriority(color) {
+    this.priority = color;
+  }
+
   submitToDoForm () {
     if(this.button == 'create') {
       var active = true;
       var date = new Date().toDateString();
       var title = this.ToDoForm.value.title;
+      var priority = this.priority;
       var comments = null;
       var user = this.authService.getUser().email;
-      this.todoService.createToDo(active, date, title, comments, user);
+      this.todoService.createToDo(active, date, title, priority, comments, user);
       this.closeModal();
     }
     if(this.button == 'edit') {
       var title = this.ToDoForm.value.title;
-      this.todoService.editToDo(this.todoId, title);
+      var priority = this.priority;
+      this.todoService.editToDo(this.todoId, title, priority);
       this.closeModal();
     }
   }
@@ -74,6 +81,7 @@ export class ProtectedComponent implements OnInit, OnDestroy {
     this.modalDisplay = 'none';
     this.ToDoForm.reset();
     this.todo = null;
+    this.priority = '';
   }
 
   onCancel(event) {

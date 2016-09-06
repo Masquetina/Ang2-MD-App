@@ -18,7 +18,7 @@
       <md-list-item>
         <md-icon md-list-icon (click)="doneToDo(todo?.$key);">done</md-icon>
         <p md-line>{{todo?.date}}</p>
-        <h2 md-line>{{todo?.title}}</h2>
+        <h2 md-line class="{{todo?.priority}}">{{todo?.title}}</h2>
         <a [routerLink]="['/protected', todo?.$key]">
           <md-icon class="action">comment</md-icon>
         </a>
@@ -51,11 +51,27 @@
           <md-hint align="end">{{title.characterCount}} / 25</md-hint>
         </md-input>
       </div>
+      <p>Priority</p>
+      <div>
+        <input type="radio" name="priority" [checked]="(todo?.priority == 'neutral') || true"
+               (click)="chagePriority('neutral');">
+        <span class="neutral">Not a priority</span>
+      </div>
+      <div>
+        <input type="radio" name="priority" [checked]="(todo?.priority == 'primary')"
+               (click)="chagePriority('primary');">
+        <span class="primary">Important</span>
+      </div>
+      <div>
+        <input type="radio" name="priority" [checked]="(todo?.priority == 'warn')"
+               (click)="chagePriority('warn');">
+        <span class="warn">Urgent</span>
+      </div>
       <div class="button-group pull-right">
         <button md-button
                 md-raised-button
                 color="primary"
-                [disabled]="!ToDoForm.valid">Save</button>
+                [disabled]="!ToDoForm.valid && !priority.checked">Save</button>
         <button md-button
                 color="primary"
                 (click)="onCancel($event);">Cancel</button>

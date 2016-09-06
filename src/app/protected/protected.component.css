@@ -55,7 +55,7 @@ md-list md-icon.action:hover {
   background-color: rgba(0,0,0,.08);
 }
 md-list md-icon.warn:hover {
-  color: rgba(244,67,54,1);
+  color: rgba(244,67,54,1) !important;
   background-color: rgba(244,67,54,.08);
 }
 .modal {
@@ -95,5 +95,8 @@ md-list md-icon.warn:hover {
 }
 .modal form md-input {
   width: 100%;
+  color: rgba(0,0,0,.54) !important;
+}
+.modal form p {
   color: rgba(0,0,0,.54) !important;
 }

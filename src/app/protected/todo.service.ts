@@ -21,27 +21,18 @@ export class ToDoService {
       });
   }
 
-  /*doesExists(todoId) {
-    this.af.database.object(todoId).subscribe((obj) => {
-      if(obj.$exists()) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-  }*/
-
   getToDo(todoId) {
     return this.af.database
       .object(`todos/${todoId}`, { preserveSnapshot: true })
   }
 
-  createToDo(active, date, title, comments, user) {
+  createToDo(active, date, title, priority, comments, user) {
     const promise = this.af.database.list('/todos')
       .push({
         active: active,
         date: date,
         title: title,
+        priority: priority,
         comments: comments,
         user: user
       });
@@ -54,10 +45,11 @@ export class ToDoService {
       });
   }
 
-  editToDo(todoId, title) {
+  editToDo(todoId, title, priority) {
     const promise = this.af.database.object(`todos/${todoId}`)
       .update({
-        title: title
+        title: title,
+        priority: priority
       });
     promise
       .then(() => {

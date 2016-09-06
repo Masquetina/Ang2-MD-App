@@ -1,18 +1,12 @@
 import { Injectable } from "@angular/core";
 import { AngularFire}  from "angularfire2";
 import { FirebaseListObservable } from "angularfire2";
-//import { Observable } from "rxjs";
 
 @Injectable()
 export class CommentService {
   todo: FirebaseListObservable<any>;
-  //comments: Observable<any>;
 
   constructor(private af: AngularFire) { }
-
-  /*getAll(todoId, commentId) {
-    return this.comments = this.af.database.list(`todos/${todoId}/comments/${commentId}`);
-  }*/
 
   getComment(todoId, commentId) {
     return this.af.database

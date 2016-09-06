@@ -5,5 +5,6 @@ export class ToDo {
               public date: string,
               public comments: Comment[],
               public title: string,
+              public priority: string,
               public user: string) { }
 }
