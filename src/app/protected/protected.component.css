@@ -2,6 +2,12 @@ button[md-fab] {
   display: block;
   margin: 0 auto;
 }
+img.empty {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: 24px;
+}
 md-list {
   margin-top: 24px;
 }

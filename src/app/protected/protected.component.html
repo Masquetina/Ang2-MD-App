@@ -11,7 +11,9 @@
                       *ngIf="isLoading();">
   </md-progress-circle>
   <div *ngIf="(todos)?.length == 0 ? true : false;">
-
+    <img class="empty" src="./img/empty.svg" alt="Empty ToDo List"/>
+    <h3 class="text-center">Your ToDo List is empty</h3>
+    <p class="text-center">So, you are either the greatest workaholic ever, or as lazy as a slot!</p>
   </div>
   <md-list>
     <div *ngFor="let todo of todos">

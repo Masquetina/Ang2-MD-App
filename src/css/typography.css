@@ -47,9 +47,9 @@ h1, h2, h3, h4, h5, h6, p {
 .neutral {
   color: rgba(0,0,0,.54) !important;
 }
-.primary {
+.primary:not(md-icon) {
   color: rgba(0,149,135,1) !important;
 }
-.warn {
+.warn:not(md-icon) {
   color: rgba(244,67,54,1) !important;
 }
