@@ -1,3 +1,13 @@
+header {
+  padding: 56px 0;
+}
+header {
+  background-color: rgba(0,149,135,1);
+}
+header * {
+  box-sizing: border-box;
+  color: rgba(255,255,255,1);
+}
 img.google {
   display: inline-block;
   vertical-align: middle;
@@ -6,5 +16,7 @@ img.google {
   padding: 8px 0;
 }
 button[md-raised-button].lite {
-  font-weight: 300 !important;
+  color: rgba(0,0,0,.54);
+  text-transform: uppercase;
+  padding: 8px 16px;
 }

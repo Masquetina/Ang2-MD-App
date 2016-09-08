@@ -28,6 +28,7 @@ import { AppComponent } from "./app.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
 import { HomeComponent } from "./static/home.component";
 import { AboutComponent } from "./static/about.component";
+import { FooterComponent } from "./static/footer.component";
 import { LoginComponent } from "./login/login.component";
 import { ProtectedComponent } from "./protected/protected.component";
 import { DetailComponent } from "./protected/detail.component";
@@ -60,6 +61,7 @@ import { NonAuthGuard } from "./shared/non-auth.guard";
     SidenavComponent,
     HomeComponent,
     AboutComponent,
+    FooterComponent,
     LoginComponent,
     ProtectedComponent,
     DetailComponent
