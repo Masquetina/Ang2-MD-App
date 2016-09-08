@@ -14,8 +14,4 @@ export class LoginComponent {
   onLogin() {
     this.authService.loginUser();
   }
-
-  isAuth() {
-    return this.authService.isAuth;
-  }
 }

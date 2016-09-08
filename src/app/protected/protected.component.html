@@ -57,17 +57,17 @@
       <div>
         <input type="radio" name="priority" [checked]="(todo?.priority == 'neutral') || true"
                (click)="chagePriority('neutral');">
-        <span class="neutral">Not a priority</span>
+        <label class="neutral">Not a priority</label>
       </div>
       <div>
         <input type="radio" name="priority" [checked]="(todo?.priority == 'primary')"
                (click)="chagePriority('primary');">
-        <span class="primary">Important</span>
+        <label class="primary">Important</label>
       </div>
       <div>
         <input type="radio" name="priority" [checked]="(todo?.priority == 'warn')"
                (click)="chagePriority('warn');">
-        <span class="warn">Urgent</span>
+        <label class="warn">Urgent</label>
       </div>
       <div class="button-group pull-right">
         <button md-button

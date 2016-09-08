@@ -1,0 +1,8 @@
+footer {
+  background-color: rgba(67,69,73,1);
+}
+footer p {
+  color: rgba(255,255,255,.87);
+  font-size: small;
+  padding: 24px;
+}

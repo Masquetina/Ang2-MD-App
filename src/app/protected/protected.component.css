@@ -106,3 +106,13 @@ md-list md-icon.warn:hover {
 .modal form p {
   color: rgba(0,0,0,.54) !important;
 }
+input[type='radio'] {
+  /*display: none;*/
+}
+
+input[type='radio'] + label {
+
+}
+input[type='radio']:checked + label {
+
+}

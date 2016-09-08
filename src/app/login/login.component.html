@@ -1,9 +1,9 @@
 <header>
   <div class="container">
-    <h2 class="text-center">Sign in to My App or create an account</h2>
-    <md-grid-list cols="1" rowHeight="128">
+    <h1 class="text-center">Sign in to ToDo App or create an account</h1>
+    <md-grid-list cols="1" rowHeight="64">
       <md-grid-tile>
-        <button md-raised-button class="lite" *ngIf="!isAuth()" (click)="onLogin();">
+        <button md-raised-button class="lite" (click)="onLogin();">
           <img class="google" src="./img/google.png" alt="Google logo"/>Use my Google Account
         </button>
       </md-grid-tile>
