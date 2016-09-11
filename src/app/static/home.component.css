@@ -24,3 +24,8 @@ img.actions {
   display: block;
   margin: 0 auto;
 }
+button {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}

@@ -1,11 +1,18 @@
 <header>
   <div class="container">
     <div class="col-lg-6 col-md-6 col-xs-12">
-      <h1>ToDo App</h1>
-      <h2>Simple ToDo List to get You organized</h2>
+      <h1 class="text-center">ToDo App</h1>
+      <h2 class="text-center">Simple ToDo List to get You organized</h2>
       <button md-raised-button
               class="text-uppercase"
-              *ngIf="!isAuth();">
+              *ngIf="!isAuth();"
+              [routerLink]="['/login']">
+        Get started
+      </button>
+      <button md-raised-button
+              class="text-uppercase"
+              *ngIf="isAuth();"
+              [routerLink]="['/protected']">
               Get started
       </button>
     </div>
